@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحويل</title>
+</head>
+<body>
+
+    <h2 dir="rtl">التحويل إلى الرابط الحقيقي</h2>
+    <p dir="rtl">تم مسح QR Code. اضغط على الرابط الوهمي للمتابعة:</p>
+
+    <a id="fakeLink" href="#" style="color: blue; text-decoration: underline; cursor: pointer;"></a>
+
+    <script>
+        // Extract realLink and fakeLink from the query parameters
+        var urlParams = new URLSearchParams(window.location.search);
+        var realLink = urlParams.get('realLink');
+        var fakeLink = urlParams.get('fakeLink');
+
+        document.getElementById('fakeLink').innerText = fakeLink;
+        document.getElementById('fakeLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            var userConfirmed = confirm("هل ترغب في الانتقال إلى الرابط الفعلي؟");
+            if (userConfirmed) {
+                window.location.href = realLink;
+            }
+        });
+    </script>
+
+</body>
+</html>
